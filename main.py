@@ -15,14 +15,14 @@ def preprocess_data(customer_dict: dict):
         'Tenure': customer_dict['Tenure'],
         'Balance': customer_dict['Balance'],
         'NumOfProducts': customer_dict['NumOfProducts'],
-        'HasCrCard': customer_dict['HasCrCard'],
-        'IsActiveMember': customer_dict['IsActiveMember'],
+        'HasCrCard': int(customer_dict['HasCrCard']),
+        'IsActiveMember': int(customer_dict['IsActiveMember']),
         'EstimatedSalary': customer_dict['EstimatedSalary'],
-        'Gender_Female': 1 if customer_dict['Gender'] == 'Female' else 0,
+        'Geography_France': 1 if customer_dict['Geography'] == 'France' else 0,
         'Geography_Germany': 1 if customer_dict['Geography'] == 'Germany' else 0,
         'Geography_Spain': 1 if customer_dict['Geography'] == 'Spain' else 0,
         'Gender_Male': 1 if customer_dict['Gender'] == 'Male' else 0,
-        'Geography_France': 1 if customer_dict['Geography'] == 'France' else 0,
+        'Gender_Female': 1 if customer_dict['Gender'] == 'Female' else 0,
     }
 
     customer_df = pd.DataFrame([input_dict])
