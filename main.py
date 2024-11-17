@@ -27,7 +27,7 @@ def preprocess_data(customer_data: dict):
     return pd.DataFrame([input_dict])
 
 @app.post("/predict")
-def predict(customer_data: dict):
+def predict_churn(customer_data: dict):
     processed_data = preprocess_data(customer_data)
     prediction = loaded_model.predict(processed_data)
     probability = loaded_model.predict_proba(processed_data)[:, 1]
@@ -35,8 +35,8 @@ def predict(customer_data: dict):
 
 
 
-
-async def predict_churn_endpoint(customer_data: dict):
+@app.post("/predict")
+async def predict(customer_data: dict):
     prediction, probability = predict_churn(customer_data)
     return {"prediction": prediction.tolist(), "probability": probability.tolist()}
 
