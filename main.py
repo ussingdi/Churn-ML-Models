@@ -24,12 +24,16 @@ def preprocess_data(customer_data: dict):
         'Geography_Germany': 1 if customer_data['Geography'] == 'Germany' else 0,
         'Geography_Spain': 1 if customer_data['Geography'] == 'Spain' else 0,
     }
-    return pd.DataFrame([input_dict])
+
+    customer_data_df = pd.DataFrame([input_dict])
+    print(customer_data_df)
+
+    return customer_data_df
 
 def predict_churn(customer_data: dict):
     processed_data = preprocess_data(customer_data)
-    prediction = loaded_model.predict(processed_data)
-    probability = loaded_model.predict_proba(processed_data)[:, 1]
+    prediction = loaded_model.predict(preprocess_data)
+    probability = loaded_model.predict_proba(preprocess_data)[:, 1]
     return prediction, probability
 
 
